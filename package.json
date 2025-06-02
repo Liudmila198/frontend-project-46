@@ -13,7 +13,7 @@
   "exports": {
     ".": {
       "import": "./src/index.js",
-      "require": "./src/index.cjs"  
+      "require": "./src/index.cjs"
     }
   },
   "scripts": {
