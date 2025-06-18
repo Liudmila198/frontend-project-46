@@ -1,18 +1,18 @@
 #!/usr/bin/env node
-import { Command } from 'commander/esm.mjs';
-import genDiff from '../src/index.js';
+import { Command } from 'commander'
+import genDiff from '../src/index.js'
 
-const program = new Command();
+const program = new Command()
 
 program
-  .version('0.0.1', '-V, --version', 'output the version number')
+  .name('gendiff')
   .description('Compares two configuration files and shows a difference.')
-  .arguments('<filepath1> <filepath2>')
-  .option('-f, --format <type>', 'output format', 'stylish')
-  .option('-h, --help', 'display help for command')
-  .action((filePath1, filePath2) => {
-    console.log(genDiff(filePath1, filePath2, program.opts().format));
-  });
-program.parse();
+  .version('1.0.0', '-V, --version', 'output the version number')
+  .argument('<filepath1>', 'path to first file')
+  .argument('<filepath2>', 'path to second file')
+  .action((filepath1, filepath2) => {
+    const diff = genDiff(filepath1, filepath2)
+    console.log(diff);
+  })
 
-
+program.parse()
