@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
 import { parseJsonFile } from '../src/parsers.js'
+import genDiff from '../src/sortkeys.js'
 
 const program = new Command()
 
@@ -12,10 +13,10 @@ program
   .argument('<filepath1>')
   .argument('<filepath2>')
   .action((filepath1, filepath2) => {
-    const data1 = parseJsonFile(filepath1);
-    const data2 = parseJsonFile(filepath2);
-    console.log('Parsed data from file 1:', data1);
-    console.log('Parsed data from file 2:', data2);
+    const data1 = parseJsonFile(filepath1)
+    const data2 = parseJsonFile(filepath2)
+    const diff = genDiff(data1, data2)
+    console.log(diff)
   })
 program.parse(process.argv)
 
