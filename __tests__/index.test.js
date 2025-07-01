@@ -1,47 +1,116 @@
-const fs = require('fs');
-const { compareJsonFiles } = require('../jsonComparator');
-const path = require('path');
+import fs from 'fs/promises';
+import { test, expect, describe, beforeEach } from '@jest/globals';
+import genDiff from '../src/genDiff.js';
 
-describe('JSON Comparator', () => {
-  const testDir = path.join(__dirname, 'temp');
-  
-  beforeAll(() => {
-    if (!fs.existsSync(testDir)) {
-      fs.mkdirSync(testDir);
-    }
+// Мокируем файловую систему
+jest.mock('fs/promises');
+
+describe('Flat JSON files comparison', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
-  
-  afterAll(() => {
-    fs.rmdirSync(testDir, { recursive: true });
+
+  test('should detect added keys', async () => {
+    const file1 = '{}';
+    const file2 = '{"newKey": "value"}';
+    fs.readFile.mockResolvedValueOnce(file1).mockResolvedValueOnce(file2);
+
+    const expected = `{
+  + newKey: value
+}`;
+    await expect(genDiff('file1.json', 'file2.json')).resolves.toBe(expected);
   });
-  
-  test('identical files', () => {
-    const file1 = path.join(testDir, 'file1.json');
-    const file2 = path.join(testDir, 'file2.json');
-    
-    fs.writeFileSync(file1, JSON.stringify({ a: 1, b: 2 }));
-    fs.writeFileSync(file2, JSON.stringify({ a: 1, b: 2 }));
-    
-    expect(compareJsonFiles(file1, file2)).toBe(true);
+
+  test('should detect removed keys', async () => {
+    const file1 = '{"oldKey": "value"}';
+    const file2 = '{}';
+    fs.readFile.mockResolvedValueOnce(file1).mockResolvedValueOnce(file2);
+
+    const expected = `{
+  - oldKey: value
+}`;
+    await expect(genDiff('file1.json', 'file2.json')).resolves.toBe(expected);
   });
-  
-  test('different files', () => {
-    const file1 = path.join(testDir, 'file1.json');
-    const file2 = path.join(testDir, 'file3.json');
-    
-    fs.writeFileSync(file1, JSON.stringify({ a: 1, b: 2 }));
-    fs.writeFileSync(file2, JSON.stringify({ a: 1, b: 3 }));
-    
-    expect(compareJsonFiles(file1, file2)).toBe(false);
+
+  test('should detect changed values', async () => {
+    const file1 = '{"key": "oldValue"}';
+    const file2 = '{"key": "newValue"}';
+    fs.readFile.mockResolvedValueOnce(file1).mockResolvedValueOnce(file2);
+
+    const expected = `{
+  - key: oldValue
+  + key: newValue
+}`;
+    await expect(genDiff('file1.json', 'file2.json')).resolves.toBe(expected);
   });
-  
-  test('ignore keys', () => {
-    const file1 = path.join(testDir, 'file4.json');
-    const file2 = path.join(testDir, 'file5.json');
-    
-    fs.writeFileSync(file1, JSON.stringify({ a: 1, b: 2, timestamp: 123 }));
-    fs.writeFileSync(file2, JSON.stringify({ a: 1, b: 2, timestamp: 456 }));
-    
-    expect(compareJsonFiles(file1, file2, ['timestamp'])).toBe(true);
+
+  test('should keep unchanged values', async () => {
+    const content = '{"key": "sameValue"}';
+    fs.readFile.mockResolvedValue(content);
+
+    const expected = `{
+    key: sameValue
+}`;
+    await expect(genDiff('file1.json', 'file2.json')).resolves.toBe(expected);
+  });
+
+  test('should handle combined changes', async () => {
+    const file1 = `{
+      "common": "value",
+      "removed": "data",
+      "changed": "old"
+    }`;
+    const file2 = `{
+      "common": "value",
+      "added": "data",
+      "changed": "new"
+    }`;
+    fs.readFile.mockResolvedValueOnce(file1).mockResolvedValueOnce(file2);
+
+    const expected = `{
+    common: value
+  - removed: data
+  - changed: old
+  + changed: new
+  + added: data
+}`;
+    await expect(genDiff('file1.json', 'file2.json')).resolves.toBe(expected);
+  });
+
+  test('should sort keys alphabetically', async () => {
+    const file1 = '{"b": "value", "a": "value"}';
+    const file2 = '{}';
+    fs.readFile.mockResolvedValueOnce(file1).mockResolvedValueOnce(file2);
+
+    const expected = `{
+  - a: value
+  - b: value
+}`;
+    await expect(genDiff('file1.json', 'file2.json')).resolves.toBe(expected);
+  });
+
+  test('should handle example from task', async () => {
+    const file1 = `{
+      "follow": false,
+      "host": "hexlet.io",
+      "proxy": "123.234.53.22",
+      "timeout": 50
+    }`;
+    const file2 = `{
+      "timeout": 20,
+      "verbose": true,
+      "host": "hexlet.io"
+    }`;
+    fs.readFile.mockResolvedValueOnce(file1).mockResolvedValueOnce(file2);
+
+    const expected = `{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}`;
+    await expect(genDiff('file1.json', 'file2.json')).resolves.toBe(expected);
   });
 });
