@@ -42,5 +42,5 @@
     "jest": "^30.0.3"
   },
   "http.proxySupport": "off",
-  "json.schemaDownload.enable": true
+  "json.schemaDownload.enable": false
 }
