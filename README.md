@@ -4,3 +4,6 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Liudmila198_frontend-project-46&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Liudmila198_frontend-project-46)
 
 [![Test Coverage](https://sonarcloud.io/api/project_badges/measure?project=Liudmila198_frontend-project-46&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Liudmila198_frontend-project-46)
+
+### asciinema — сервис для демонстрации выполнения команд в терминале
+https://asciinema.org/a/sl7bT7rbgp7VOas7vC7i5IUXG

@@ -1,0 +1,8 @@
+{
+  "changes": [
+    {"key": "follow", "type": "removed", "value": false},
+    {"key": "proxy", "type": "removed", "value": "123.234.53.22"},
+    {"key": "timeout", "type": "updated", "oldValue": 50, "newValue": 20},
+    {"key": "verbose", "type": "added", "value": true}
+  ]
+}

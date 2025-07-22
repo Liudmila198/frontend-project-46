@@ -1,8 +1,15 @@
-import fs from 'fs'
-import path from 'path'
+import yaml from 'js-yaml';
 
-export const parseJsonFile = (filePath) => {
-    const absolutePath = path.resolve(process.cwd(), filePath)
-    const fileContent = fs.readFileSync(absolutePath, 'utf-8')
-    return JSON.parse(fileContent)
-}
+const parse = (rawData, format) => {
+  switch (format) {
+    case 'json':
+      return JSON.parse(rawData);
+    case 'yaml':
+    case 'yml':
+      return yaml.load(rawData);
+    default:
+      throw new Error(`Unknown parsing format: '${format}'!`);
+  }
+};
+
+export default parse;

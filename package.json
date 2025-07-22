@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "commander": "^11.1.0",
+    "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
   },
   "exports": {
@@ -42,5 +43,5 @@
     "jest": "^30.0.3"
   },
   "http.proxySupport": "off",
-  "json.schemaDownload.enable": false
+  "json.schemaDownload.enable": true
 }

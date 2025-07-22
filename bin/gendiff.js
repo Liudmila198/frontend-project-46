@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
-import { parseJsonFile } from '../src/parsers.js'
+import  parseJsonFile  from '../src/index.js'
 import genDiff from '../src/sortkeys.js'
 
 const program = new Command()
