@@ -7,3 +7,6 @@ const parseJsonFile = (filePath) => {
     return JSON.parse(fileContent)
 }
 export default parseJsonFile;
+
+
+

@@ -1,4 +1,4 @@
-# Пример для GitHub Actions
+
 name: CI
 
 on: [push, pull_request]
