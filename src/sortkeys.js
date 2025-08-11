@@ -1,32 +1,30 @@
-import pkg from 'lodash'
-const { sortBy, union, has } = pkg
+// src/gendiff.js
+import { parseFile } from '../src/index.js';
 
-const genDiff = (obj1, obj2) => {
-  const keys = sortBy(union(Object.keys(obj1), Object.keys(obj2)))
-  
-  const diffLines = keys.flatMap((key) => {
-    const value1 = obj1[key]
-    const value2 = obj2[key]
+const genDiff = (filepath1, filepath2) => {
+  // Получаем данные через парсер
+  const data1 = parseFile(filepath1);
+  const data2 = parseFile(filepath2);
 
-    if (!has(obj2, key)) {
-      return `  - ${key}: ${value1}`
-    }
-    
-    if (!has(obj1, key)) {
-      return `  + ${key}: ${value2}`
-    }
-    
-    if (value1 === value2) {
-      return `    ${key}: ${value1}`
-    }
-    
-    return [
-      `  - ${key}: ${value1}`,
-      `  + ${key}: ${value2}`,
-    ]
-  })
+  const keys = new Set([...Object.keys(data1), ...Object.keys(data2)]);
+  const sortedKeys = Array.from(keys).sort();
 
-  return `{\n${diffLines.join('\n')}\n}`
+  const lines = ['{'];
+  sortedKeys.forEach((key) => {
+    if (!(key in data2)) {
+      lines.push(`  - ${key}: ${data1[key]}`);
+    } else if (!(key in data1)) {
+      lines.push(`  + ${key}: ${data2[key]}`);
+    } else if (data1[key] !== data2[key]) {
+      lines.push(`  - ${key}: ${data1[key]}`);
+      lines.push(`  + ${key}: ${data2[key]}`);
+    } else {
+      lines.push(`    ${key}: ${data1[key]}`);
+    }
+  });
+  lines.push('}');
+
+  return lines.join('\n');
 };
 
-export default genDiff
+export default genDiff;
