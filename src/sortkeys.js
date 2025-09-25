@@ -1,30 +1,41 @@
-// src/gendiff.js
-import { parseFile } from '../src/index.js';
-
-const genDiff = (filepath1, filepath2) => {
-  // Получаем данные через парсер
-  const data1 = parseFile(filepath1);
-  const data2 = parseFile(filepath2);
-
-  const keys = new Set([...Object.keys(data1), ...Object.keys(data2)]);
-  const sortedKeys = Array.from(keys).sort();
-
-  const lines = ['{'];
-  sortedKeys.forEach((key) => {
+const sortKeys = (data1, data2) => {
+  const keys1 = Object.keys(data1);
+  const keys2 = Object.keys(data2);
+  const allKeys = new Set([...keys1, ...keys2]);
+  const sortedKeys = Array.from(allKeys).sort();
+  
+  return sortedKeys.map((key) => {
     if (!(key in data2)) {
-      lines.push(`  - ${key}: ${data1[key]}`);
-    } else if (!(key in data1)) {
-      lines.push(`  + ${key}: ${data2[key]}`);
-    } else if (data1[key] !== data2[key]) {
-      lines.push(`  - ${key}: ${data1[key]}`);
-      lines.push(`  + ${key}: ${data2[key]}`);
-    } else {
-      lines.push(`    ${key}: ${data1[key]}`);
+      return { type: 'removed', key, value: data1[key] };
     }
+    if (!(key in data1)) {
+      return { type: 'added', key, value: data2[key] };
+    }
+    
+    const value1 = data1[key];
+    const value2 = data2[key];
+    
+    if (value1 === value2) {
+      return { type: 'unchanged', key, value: value1 };
+    }
+    
+    // Если оба значения - объекты, обрабатываем рекурсивно
+    if (typeof value1 === 'object' && value1 !== null && 
+        typeof value2 === 'object' && value2 !== null) {
+      return {
+        type: 'nested',
+        key,
+        children: sortKeys(value1, value2)
+      };
+    }
+    
+    return { 
+      type: 'changed', 
+      key, 
+      oldValue: value1, 
+      newValue: value2 
+    };
   });
-  lines.push('}');
-
-  return lines.join('\n');
 };
 
-export default genDiff;
+export default sortKeys

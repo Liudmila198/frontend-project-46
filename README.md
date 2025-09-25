@@ -5,6 +5,8 @@
 
 [![Test Coverage](https://sonarcloud.io/api/project_badges/measure?project=Liudmila198_frontend-project-46&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Liudmila198_frontend-project-46)
 
-### asciinema — сервис для демонстрации выполнения команд в терминале
+### Сравнение плоских файлов (JSON)
+[![asciicast](https://asciinema.org/a/7oYy0VgnY1lFrXj0Qfwa0CQKg.svg)](https://asciinema.org/a/7oYy0VgnY1lFrXj0Qfwa0CQKg)
 
-[![asciicast](https://asciinema.org/a/sl7bT7rbgp7VOas7vC7i5IUXG.svg)](https://asciinema.org/a/sl7bT7rbgp7VOas7vC7i5IUXG)
+### Сравнение плоских файлов (yaml)
+[![asciicast](https://asciinema.org/a/wjyEZROebkPc2SpZFTF4Hon8q.svg)](https://asciinema.org/a/wjyEZROebkPc2SpZFTF4Hon8q)

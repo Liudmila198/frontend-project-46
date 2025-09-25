@@ -1,0 +1,10 @@
+{"version": 2, "width": 123, "height": 20, "timestamp": 1754905798, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+[0.17015, "o", "\u001b[?2004h\u001b]0;liuda@liuda-HP: ~/frontend-project-46/__fixtures__\u0007\u001b[01;32mliuda@liuda-HP\u001b[00m:\u001b[01;34m~/frontend-project-46/__fixtures__\u001b[00m$ "]
+[1.556557, "o", "gendiff file1.yml file2.yml"]
+[2.16154, "o", "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\bnpm test\u001b[K"]
+[2.667749, "o", "\b\b\b\b\b\b\b\bgendiff file1.yml file2.yml"]
+[3.930187, "o", "\b\b\b\b\b\b\b\b\b\b\b\b\bjson file2.json"]
+[5.756752, "o", "\r\n\u001b[?2004l\r"]
+[5.796721, "o", "{\r\n  - follow: false\r\n    host: hexlet.io\r\n  - proxy: 123.234.53.22\r\n  - timeout: 50\r\n  + timeout: 20\r\n  + verbose: true\r\n}\r\n"]
+[5.799638, "o", "\u001b[?2004h\u001b]0;liuda@liuda-HP: ~/frontend-project-46/__fixtures__\u0007\u001b[01;32mliuda@liuda-HP\u001b[00m:\u001b[01;34m~/frontend-project-46/__fixtures__\u001b[00m$ "]
+[11.43845, "o", "\u001b[?2004l\r\r\nexit\r\n"]

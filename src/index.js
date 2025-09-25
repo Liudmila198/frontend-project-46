@@ -1,21 +1,14 @@
-import fs from 'fs'
-import path from 'path'
-import yaml from 'js-yaml'
-//import parse from '../src/parsers.js'
 
-export const parseFile = (format) => {
-  const absolutePath = path.resolve(process.cwd(), format);
-  const content = fs.readFileSync(absolutePath, 'utf-8');
-  const extension = path.extname(format).toLowerCase();
-  switch (extension) {
-      case '.json':
-        return JSON.parse(content)
-      case '.yaml':
-      case '.yml':
-        return yaml.load(content)
-      default:
-        throw new Error(`Unknown parsing format: ${extension}'!`)
-    }
+import parse from './parsers.js';
+import sortKeys from './sortkeys.js';
+import format from './formatters/index.js';
+
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
+  const data1 = parse(filepath1);
+  const data2 = parse(filepath2);
+  
+  const diff = sortKeys(data1, data2);
+  return format(diff, formatName);
 };
 
-export default parseFile
+export default genDiff;
