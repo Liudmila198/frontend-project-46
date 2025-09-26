@@ -47,3 +47,7 @@ jobs:
       with:
 
         coverageCommand: make test-coverage
+      run: |
+
+
+        sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=src -Dsonar.host.url=https://mysonarqube.com -Dsonar.login=$SONAR_TOKEN
