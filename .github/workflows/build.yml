@@ -1,18 +1,17 @@
 
 name: CI
-
 on: [push, pull_request]
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Run tests
-      run: npm test -- --coverage
-    - name: Run SonarQube analysis
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: |
-        sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=src -Dsonar.host.url=https://mysonarqube.com -Dsonar.login=$SONAR_TOKEN
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 
+      - name: Run tests
+        run: npm test -- --coverage
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v6.0.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
