@@ -3,8 +3,6 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Liudmila198_frontend-project-46&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Liudmila198_frontend-project-46)
 
-[![Test Coverage](https://sonarcloud.io/api/project_badges/measure?project=Liudmila198_frontend-project-46&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Liudmila198_frontend-project-46)
-
 ### Аргументы и опции
 [![asciicast](https://asciinema.org/a/IZFXJoayCKRV827p4baxtX9vd.svg)](https://asciinema.org/a/IZFXJoayCKRV827p4baxtX9vd)
 

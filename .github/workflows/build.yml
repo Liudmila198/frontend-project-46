@@ -2,28 +2,19 @@ name: Builder CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
-
+    types: [opened, synchronize, reopened]
 jobs:
-  build:
-
+  sonarqube:
+    name: SonarQube
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-        cache: 'npm'
-    - run: make install
-    - run: make lint
-    - name: Test & publish code coverage
-      uses: paambaati/codeclimate-action@v3.1.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        coverageCommand: make test-coverage
+      - uses: actions/checkout@v4
+        with:
+        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+    name: SonarQube Scan
+    uses: SonarSource/sonarqube-scan-action@v5
+    env:
+       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
