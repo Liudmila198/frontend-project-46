@@ -1,49 +1,21 @@
-name: CI
-
-on:
-
-  push:
-
-    branches: [ "main" ]
-
-  pull_request:
-
-    branches: [ "main" ]
+name: Code Climate
+on: [push, pull_request]
 
 jobs:
-
-  build:
-
+  test:
     runs-on: ubuntu-latest
-
     steps:
-
-    - name: Checkout
-
-      uses: actions/checkout@v3
-
-    - name: Use Node.js
-
-      uses: actions/setup-node@v3
-
-      with:
-
-        node-version: '18.x'
-
-        cache: 'npm'
-
-    - run: make install
-
-    - run: make lint
-
-    - name: Test & publish code coverage
-
-    - uses: paambaati/codeclimate-action@v4
-      env:
-
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-
-      with:
-
-        coverageCommand: make test-coverage
-      
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run tests with coverage
+        uses: paambaati/codeclimate-action@v4
+        with:
+          coverageCommand: npm run test:coverage
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
