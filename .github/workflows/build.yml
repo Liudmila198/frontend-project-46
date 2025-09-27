@@ -14,7 +14,7 @@ jobs:
         run: npm ci
         
       - name: Run tests with coverage
-        uses: paambaati/codeclimate-action@v4
+      - uses: paambaati/codeclimate-action@v5.0.0
         with:
           coverageCommand: npm run test:coverage
         env:
