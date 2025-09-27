@@ -8,18 +8,17 @@ on:
 
 jobs:
   lint:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x, 20.x]  # Обновите версии Node.js
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4  # Обновите до v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4  # Обновите до v4
       with:
         node-version: ${{ matrix.node-version }}
-    - run: make install
+    - run: npm ci  # Замените make install на npm ci для надежности
     - run: make lint

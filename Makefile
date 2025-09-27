@@ -23,3 +23,6 @@ publish:
 	npx release-it
 
 .PHONY: test
+
+install:
+	npm ci
