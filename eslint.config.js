@@ -6,14 +6,14 @@ export default [
   {
     languageOptions: {
       globals: {
-        console: "readonly",
-        process: "readonly",
-        Buffer: "readonly",
-        __dirname: "readonly",
-        __filename: "readonly",
-        require: "readonly",
-        module: "readonly",
-        exports: "readonly"
+        console: 'readonly',
+        process: 'readonly',
+        Buffer: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        require: 'readonly',
+        module: 'readonly',
+        exports: 'readonly'
       }
     },
     rules: {
