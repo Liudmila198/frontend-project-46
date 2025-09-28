@@ -1,12 +1,12 @@
 
-import  genDiff  from '../src/index.js';
-import { describe, test, expect } from '@jest/globals';
+import  genDiff  from '../src/index.js'
+import { describe, test, expect } from '@jest/globals'
 
 
 describe('genDiff', () => {
   test('должен корректно сравнивать JSON файлы', () => {
-    const file1 = '__fixtures__/file1.json';
-    const file2 = '__fixtures__/file2.json';
+    const file1 = '__fixtures__/file1.json'
+    const file2 = '__fixtures__/file2.json'
     
     const expected1 = `
 {
@@ -52,14 +52,14 @@ describe('genDiff', () => {
         }
         fee: 100500
     }
-}`.trim();
+}`.trim()
     
-    const diff = genDiff(file1, file2).trim();
-    expect(diff).toEqual(expected1);
+    const diff = genDiff(file1, file2).trim()
+    expect(diff).toEqual(expected1)
   });
   test('должен корректно сравнивать YML файлы', () => {
-    const file1 = '__fixtures__/file1.yml';
-    const file2 = '__fixtures__/file2.yml';
+    const file1 = '__fixtures__/file1.yml'
+    const file2 = '__fixtures__/file2.yml'
     
     const expected = `
 {
@@ -105,14 +105,14 @@ describe('genDiff', () => {
         }
         fee: 100500
     }
-}`.trim();
+}`.trim()
     
-    const diff = genDiff(file1, file2).trim();
-    expect(diff).toEqual(expected);
-  });
+    const diff = genDiff(file1, file2).trim()
+    expect(diff).toEqual(expected)
+  })
   test('должен корректно сравнивать файлы в plain формате', () => {
-    const file1 = '__fixtures__/file1.json';
-    const file2 = '__fixtures__/file2.json';
+    const file1 = '__fixtures__/file1.json'
+    const file2 = '__fixtures__/file2.json'
   
     const expected = `Property 'common.follow' was added with value: false
 Property 'common.setting2' was removed
@@ -124,14 +124,14 @@ Property 'common.setting6.ops' was added with value: 'vops'
 Property 'group1.baz' was updated. From 'bas' to 'bars'
 Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
-Property 'group3' was added with value: [complex value]`;
+Property 'group3' was added with value: [complex value]`
 
-    const diff = genDiff(file1, file2, 'plain').trim();
-    expect(diff).toEqual(expected);
-  });
+    const diff = genDiff(file1, file2, 'plain').trim()
+    expect(diff).toEqual(expected)
+  })
   test('должен корректно сравнивать файлы в plain формате', () => {
-    const file1 = '__fixtures__/file1.yml';
-    const file2 = '__fixtures__/file2.yml';
+    const file1 = '__fixtures__/file1.yml'
+    const file2 = '__fixtures__/file2.yml'
   
     const expected = `Property 'common.follow' was added with value: false
 Property 'common.setting2' was removed
@@ -143,21 +143,21 @@ Property 'common.setting6.ops' was added with value: 'vops'
 Property 'group1.baz' was updated. From 'bas' to 'bars'
 Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
-Property 'group3' was added with value: [complex value]`;
+Property 'group3' was added with value: [complex value]`
 
-    const diff = genDiff(file1, file2, 'plain').trim();
-    expect(diff).toEqual(expected);
-  });
+    const diff = genDiff(file1, file2, 'plain').trim()
+    expect(diff).toEqual(expected)
+  })
   test('json формат должен содержать все необходимые данные', () => {
-    const file1 = '__fixtures__/file1.json';
-    const file2 = '__fixtures__/file2.json';
+    const file1 = '__fixtures__/file1.json'
+    const file2 = '__fixtures__/file2.json'
   
-    const diff = genDiff(file1, file2, 'json');
-    const parsedDiff = JSON.parse(diff);
+    const diff = genDiff(file1, file2, 'json')
+    const parsedDiff = JSON.parse(diff)
   
-    const commonNode = parsedDiff.find(node => node.key === 'common');
-    expect(commonNode).toBeDefined();
-    expect(commonNode.type).toBe('nested');
-    expect(commonNode.children).toBeInstanceOf(Array);
-  });
-});
+    const commonNode = parsedDiff.find(node => node.key === 'common')
+    expect(commonNode).toBeDefined()
+    expect(commonNode.type).toBe('nested')
+    expect(commonNode.children).toBeInstanceOf(Array)
+  })
+})
