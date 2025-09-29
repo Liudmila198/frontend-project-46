@@ -26,9 +26,5 @@ export default [
       '**/node_modules/',
       'coverage/',
     ],
-    files: ['../__tests__/index.test.js'], // Тестовые файлы
-    rules: {
-      'indent': ['error', 2], // Теперь тесты тоже используют 2 пробела
-    },
   },
 ]
