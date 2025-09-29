@@ -6,7 +6,6 @@ const parse = (filepath) => {
   const absolutePath = path.resolve(process.cwd(), filepath)
   const content = fs.readFileSync(absolutePath, 'utf-8')
   const format = path.extname(filepath)
-  
   if (format === '.json') {
     return JSON.parse(content)
   } else if (format === '.yml' || format === '.yaml') {
