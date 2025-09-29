@@ -1,4 +1,3 @@
-
 import genDiff from '../src/index.js'
 import { describe, test, expect } from '@jest/globals'
 
