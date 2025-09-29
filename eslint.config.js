@@ -5,7 +5,7 @@ export default [
   js.configs.recommended,
   {
     plugins: {
-      '@stylistic': stylistic
+      '@stylistic': stylistic,
     },
     languageOptions: {
       globals: {
