@@ -12,19 +12,19 @@ export default [
         __filename: 'readonly',
         require: 'readonly',
         module: 'readonly',
-        exports: 'readonly'
-      }
+        exports: 'readonly',
+      },
     },
     rules: {
       'indent': ['error', 2],
       'linebreak-style': ['error', 'unix'],
       'quotes': ['error', 'single'],
       'semi': ['error', 'never'],
-      'no-console': 'off'
+      'no-console': 'off',
     },
     ignores: [
       '**/node_modules/',
-      'coverage/'
-    ]
-  }
+      'coverage/',
+    ],
+  },
 ]

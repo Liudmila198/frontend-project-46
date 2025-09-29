@@ -8,7 +8,8 @@ const parse = (filepath) => {
   const format = path.extname(filepath)
   if (format === '.json') {
     return JSON.parse(content)
-  } else if (format === '.yml' || format === '.yaml') {
+  } 
+  else if (format === '.yml' || format === '.yaml') {
     return yaml.load(content)
   }
   throw new Error(`Unsupported format: ${format}`)

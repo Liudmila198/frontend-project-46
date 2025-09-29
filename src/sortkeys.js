@@ -15,19 +15,19 @@ const sortKeys = (data1, data2) => {
     if (value1 === value2) {
       return { type: 'unchanged', key, value: value1 }
     }
-    if (typeof value1 === 'object' && value1 !== null &&
-        typeof value2 === 'object' && value2 !== null) {
+    if (typeof value1 === 'object' && value1 !== null 
+      && typeof value2 === 'object' && value2 !== null) {
       return {
         type: 'nested',
         key,
-        children: sortKeys(value1, value2)
+        children: sortKeys(value1, value2),
       }
     }
     return { 
       type: 'changed', 
       key,
       oldValue: value1,
-      newValue: value2
+      newValue: value2,
     }
   })
 }
