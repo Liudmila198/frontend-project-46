@@ -4,14 +4,14 @@ import formatJson from './json.js'
 
 const indexFormat = (diff, format) => {
   switch (format) {
-    case 'stylish':
-      return formatStylish(diff)
-    case 'plain':
-      return formatPlain(diff)
-    case 'json':
-      return formatJson(diff)
-    default:
-      throw new Error(`Unknown format: ${format}`)
+  case 'stylish':
+    return formatStylish(diff)
+  case 'plain':
+    return formatPlain(diff)
+  case 'json':
+    return formatJson(diff)
+  default:
+    throw new Error(`Unknown format: ${format}`)
   }
 }
 
