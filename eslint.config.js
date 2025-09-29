@@ -1,8 +1,12 @@
 import js from '@eslint/js'
+import stylistic from '@stylistic/eslint-plugin'
 
 export default [
   js.configs.recommended,
   {
+    plugins: {
+      '@stylistic': stylistic
+    },
     languageOptions: {
       globals: {
         console: 'readonly',
@@ -16,11 +20,16 @@ export default [
       },
     },
     rules: {
-      'indent': ['error', 2], // Change from 2 to 4
-      'linebreak-style': ['error', 'unix'],
-      'quotes': ['error', 'single'],
-      'semi': ['error', 'never'],
+      'indent': 'off',
+      'linebreak-style': 'off',
+      'quotes': 'off',
+      'semi': 'off',
       'no-console': 'off',
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/linebreak-style': ['error', 'unix'],
+      '@stylistic/quotes': ['error', 'single'],
+      '@stylistic/semi': ['error', 'never'],
+      '@stylistic/eol-last': ['error', 'always'],
     },
     ignores: [
       '**/node_modules/',
