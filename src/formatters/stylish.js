@@ -16,21 +16,21 @@ const formatStylish = (diff, depth = 1) => {
   const lines = diff.flatMap((node) => {
     const { type, key } = node
     switch (type) {
-    case 'nested':
-      return `${indent}  ${key}: ${formatStylish(node.children, depth + 1)}`
-    case 'added':
-      return `${indent}+ ${key}: ${stringify(node.value, depth + 1)}`
-    case 'removed':
-      return `${indent}- ${key}: ${stringify(node.value, depth + 1)}`
-    case 'changed':
-      return [
-        `${indent}- ${key}: ${stringify(node.oldValue, depth + 1)}`,
-        `${indent}+ ${key}: ${stringify(node.newValue, depth + 1)}`,
-      ]
-    case 'unchanged':
-      return `${indent}  ${key}: ${stringify(node.value, depth + 1)}`
-    default:
-      throw new Error(`Unknown node type: ${node.type}`)
+      case 'nested':
+        return `${indent}  ${key}: ${formatStylish(node.children, depth + 1)}`
+      case 'added':
+        return `${indent}+ ${key}: ${stringify(node.value, depth + 1)}`
+      case 'removed':
+        return `${indent}- ${key}: ${stringify(node.value, depth + 1)}`
+      case 'changed':
+        return [
+          `${indent}- ${key}: ${stringify(node.oldValue, depth + 1)}`,
+          `${indent}+ ${key}: ${stringify(node.newValue, depth + 1)}`,
+        ]
+      case 'unchanged':
+        return `${indent}  ${key}: ${stringify(node.value, depth + 1)}`
+      default:
+        throw new Error(`Unknown node type: ${node.type}`)
     }
   })
   return `{\n${lines.join('\n')}\n${bracketIndent}}`
