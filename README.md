@@ -1,7 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Liudmila198/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Liudmila198/frontend-project-46/actions)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Liudmila198_frontend-project-46&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Liudmila198_frontend-project-46)
-[![CI](https://github.com/Liudmila198/frontend-project-46/actions/workflows/build.yml/badge.svg)](https://github.com/Liudmila198/frontend-project-46/actions/workflows/build.yml)
+[![CI](https://github.com/Liudmila198/frontend-project-46/actions/workflows/lint.yml/badge.svg)](https://github.com/Liudmila198/frontend-project-46/actions/workflows/lint.yml)
 
 ### Описание
 Вычислитель отличий – программа, определяющая разницу между двумя структурами данных. Это популярная задача, для решения которой существует множество онлайн сервисов, например (http://www.jsondiff.com/). Подобный механизм используется при выводе тестов или при автоматическом отслеживании изменении в конфигурационных файлах.
