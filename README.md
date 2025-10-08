@@ -1,12 +1,8 @@
 ### Hexlet tests and linter status:
-<table>
-  <tr>
-    <td>[![Actions Status](https://github.com/Liudmila198/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Liudmila198/frontend-project-46/actions)</td>
-    <td>[![hexlet-check](https://github.com/Liudmila198/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Liudmila198/frontend-project-46/actions/workflows/hexlet-check.yml)</td>
-    <td>[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Liudmila198_frontend-project-46&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Liudmila198_frontend-project-46)</td>
-    <td>[![CI](https://github.com/Liudmila198/frontend-project-46/actions/workflows/build.yml/badge.svg)](https://github.com/Liudmila198/frontend-project-46/actions/workflows/build.yml)</td>
-  </tr>
-</table>
+[![Actions Status](https://github.com/Liudmila198/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Liudmila198/frontend-project-46/actions)
+[![hexlet-check](https://github.com/Liudmila198/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Liudmila198/frontend-project-46/actions/workflows/hexlet-check.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Liudmila198_frontend-project-46&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Liudmila198_frontend-project-46)
+[![CI](https://github.com/Liudmila198/frontend-project-46/actions/workflows/build.yml/badge.svg)](https://github.com/Liudmila198/frontend-project-46/actions/workflows/build.yml)
 
 ### Аргументы и опции
 [![asciicast](https://asciinema.org/a/IZFXJoayCKRV827p4baxtX9vd.svg)](https://asciinema.org/a/IZFXJoayCKRV827p4baxtX9vd)
