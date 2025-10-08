@@ -2,8 +2,7 @@
   "name": "@hexlet/code",
   "type": "module",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/Liudmila198/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Liudmila198/frontend-project-46/actions)",
-  "main": "",
+  "description": "Compares two configuration files and shows a difference",
   "bin": {
     "gendiff": "./bin/gendiff.js"
   },
