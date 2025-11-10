@@ -1,4 +1,4 @@
-const sortKeys = (data1, data2) => {
+const buildObjectDiff = (data1, data2) => {
   const keys1 = Object.keys(data1)
   const keys2 = Object.keys(data2)
   const allKeys = new Set([...keys1, ...keys2])
@@ -20,7 +20,7 @@ const sortKeys = (data1, data2) => {
       return {
         type: 'nested',
         key,
-        children: sortKeys(value1, value2),
+        children: buildObjectDiff(value1, value2),
       }
     }
     return {
@@ -32,4 +32,4 @@ const sortKeys = (data1, data2) => {
   })
 }
 
-export default sortKeys
+export default buildObjectDiff
