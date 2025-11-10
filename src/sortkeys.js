@@ -2,7 +2,7 @@ const buildObjectDiff = (data1, data2) => {
   const keys1 = Object.keys(data1)
   const keys2 = Object.keys(data2)
   const allKeys = new Set([...keys1, ...keys2])
-  const sortedKeys = Array.from(allKeys).sort()
+  const sortedKeys = Array.from(allKeys).sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base', numeric: true }))
   return sortedKeys.map((key) => {
     if (!(key in data2)) {
       return { type: 'removed', key, value: data1[key] }
