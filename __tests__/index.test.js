@@ -2,7 +2,7 @@ import genDiff from '../src/index.js'
 import { describe, test, expect } from '@jest/globals'
 import path from 'path'
 
-const getFixturePath = (filename) => path.join('__fixtures__', filename)
+const getFixturePath = filename => path.join('__fixtures__', filename)
 
 describe('genDiff', () => {
   test('должен корректно сравнивать JSON файлы', () => {
