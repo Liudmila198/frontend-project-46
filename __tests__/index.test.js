@@ -1,5 +1,6 @@
 import genDiff from '../src/index.js'
 import { describe, test, expect } from '@jest/globals'
+import { readFileSync } from 'fs'
 import path from 'path'
 
 const getFixturePath = (filename) => path.join('__fixtures__', filename)
@@ -35,7 +36,7 @@ describe('genDiff', () => {
   test('должен возвращать валидный JSON для формата json', () => {
     const file1 = getFixturePath('file1.yml')
     const file2 = getFixturePath('file2.yml')
-    const diff = genDiff(file1, file2, 'plain')
+    const diff = genDiff(file1, file2, 'json')
     expect(() => JSON.parse(diff)).not.toThrow()
     const parsed = JSON.parse(diff)
     expect(Array.isArray(parsed)).toBe(true)
