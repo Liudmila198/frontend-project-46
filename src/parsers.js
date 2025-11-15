@@ -36,7 +36,6 @@ const dataParser = {
 const parseFile = (filepath) => {
   const content = fileService.readFile(filepath)
   const format = formatService.getFormat(filepath)
-  
   if (!formatService.isSupported(format)) {
     throw new Error(`Unsupported format: ${format}`)
   }

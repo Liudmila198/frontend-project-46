@@ -14,21 +14,21 @@ describe('genDiff', () => {
     },
     {
       name: 'YML файлы со stylish форматом',
-      file1: 'file1.yml', 
+      file1: 'file1.yml',
       file2: 'file2.yml',
       format: 'stylish',
     },
     {
       name: 'JSON файлы с plain форматом',
       file1: 'file1.json',
-      file2: 'file2.json', 
+      file2: 'file2.json',
       format: 'plain',
     },
   ])('$name', ({ file1, file2, format }) => {
     const path1 = getFixturePath(file1)
     const path2 = getFixturePath(file2)
     const diff = format ? genDiff(path1, path2, format) : genDiff(path1, path2)
-    
+
     expect(diff).toBeDefined()
     expect(typeof diff).toBe('string')
     expect(diff.length).toBeGreaterThan(0)
@@ -42,7 +42,7 @@ describe('genDiff', () => {
       const path1 = getFixturePath(file1)
       const path2 = getFixturePath(file2)
       const diff = genDiff(path1, path2, 'json')
-      
+
       expect(() => JSON.parse(diff)).not.toThrow()
       const parsed = JSON.parse(diff)
       expect(Array.isArray(parsed)).toBe(true)
@@ -53,7 +53,7 @@ describe('genDiff', () => {
       const file2 = getFixturePath('file2.json')
       const diff = genDiff(file1, file2, 'json')
       const parsedDiff = JSON.parse(diff)
-      
+
       const commonNode = parsedDiff.find(node => node.key === 'common')
       expect(commonNode).toBeDefined()
       expect(commonNode.type).toBe('nested')
