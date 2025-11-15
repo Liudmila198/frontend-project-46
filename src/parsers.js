@@ -30,7 +30,7 @@ const dataParser = {
 
   parseYaml: (content) => {
     return yaml.load(content)
-  }
+  },
 }
 
 const parseFile = (filepath) => {
