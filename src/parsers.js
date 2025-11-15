@@ -23,29 +23,32 @@ const formatService = {
   },
 }
 
-const parser = {
-  parse: (content, format) => {
-    if (!formatService.isSupported(format)) {
-      throw new Error(`Unsupported format: ${format}`)
-    }
-
-    if (format === '.json') {
-      return JSON.parse(content)
-    }
-
-    if (format === '.yml' || format === '.yaml') {
-      return yaml.load(content)
-    }
-
-    throw new Error(`Unsupported format: ${format}`)
+const dataParser = {
+  parseJson: (content) => {
+    return JSON.parse(content)
   },
+
+  parseYaml: (content) => {
+    return yaml.load(content)
+  }
 }
 
 const parseFile = (filepath) => {
   const content = fileService.readFile(filepath)
   const format = formatService.getFormat(filepath)
-  return parser.parse(content, format)
+  
+  if (!formatService.isSupported(format)) {
+    throw new Error(`Unsupported format: ${format}`)
+  }
+
+  if (format === '.json') {
+    return dataParser.parseJson(content)
+  }
+
+  if (format === '.yml' || format === '.yaml') {
+    return dataParser.parseYaml(content)
+  }
 }
 
 export default parseFile
-export { fileService, formatService, parser }
+export { fileService, formatService, dataParser }
