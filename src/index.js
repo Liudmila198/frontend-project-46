@@ -1,12 +1,22 @@
-import parseFile from './parsers.js'
-import sortKeys from './sortkeys.js'
-import format from './formatters/index.js'
+import fs from 'fs'
+import path from 'path'
+import process from 'process'
+import parse from './parsers.js'
+import getObjectDiff from './sortkeys.js'
+import formatDiff from './formatters/index.js'
+
+const getData = (filepath) => {
+  const fullPath = path.resolve(process.cwd(), filepath)
+  return fs.readFileSync(fullPath, 'utf8')
+}
+
+const getExtension = (filepath) => path.extname(filepath).slice(1)
 
 const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
-  const data1 = parseFile(filepath1)
-  const data2 = parseFile(filepath2)
-  const diff = sortKeys(data1, data2)
-  return format(diff, formatName)
+  const data1 = parse(getData(filepath1), getExtension(filepath1))
+  const data2 = parse(getData(filepath2), getExtension(filepath2))
+
+  return formatDiff(getObjectDiff(data1, data2), formatName)
 }
 
 export default genDiff
