@@ -40,7 +40,6 @@ describe('genDiff', () => {
     const path1 = getFixturePath(file1)
     const path2 = getFixturePath(file2)
     const diff = format ? genDiff(path1, path2, format) : genDiff(path1, path2)
-    
     const expectedResult = readFile(expected)
     expect(diff).toEqual(expectedResult)
   })

@@ -10,7 +10,7 @@ const getData = (filepath) => {
   return fs.readFileSync(fullPath, 'utf8')
 }
 
-const getExtension = (filepath) => path.extname(filepath).slice(1)
+const getExtension = filepath => path.extname(filepath).slice(1)
 
 const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
   const data1 = parse(getData(filepath1), getExtension(filepath1))
